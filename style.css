@@ -274,12 +274,6 @@
 
     .letter p { margin-bottom: 1rem; }
 
-    .photo-note {
-      margin: 0 0 1rem;
-      color: #765262;
-      line-height: 1.6;
-    }
-
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
