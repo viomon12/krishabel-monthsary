@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#641d35">
+  <title>Our Little Love Story</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="floaty">♥</span>
+    <span class="floaty">✿</span>
+    <span class="floaty">♥</span>
+    <span class="floaty">✦</span>
+    <span class="floaty">♥</span>
+    <span class="floaty">✿</span>
+  </div>
+
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-card">
+        <p class="eyebrow">A little something for us</p>
+        <h1 id="page-title">Happy<br>Monthsary</h1>
+        <p class="intro">For my Baby, and all the little moments that make us <em>us</em>. I made you a tiny corner of the internet.</p>
+        <h2 class="question">Do you love me?</h2>
+        <div class="answer-row">
+          <button class="answer yes" id="yes-button" type="button">Yes, always 💗</button>
+          <button class="answer no" id="no-button" type="button">No 🙃</button>
+        </div>
+        <p class="answer-note" id="answer-note" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="keepsakes" id="keepsakes" aria-labelledby="keepsakes-title" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">Pick your little surprise</p>
+        <h2 id="keepsakes-title">Made with love</h2>
+        <p>Choose a little something below, sweetheart.</p>
+      </div>
+
+      <div class="options" role="group" aria-label="Choose a monthsary surprise">
+        <button class="option" type="button" data-panel="flowers-panel" aria-controls="flowers-panel" aria-pressed="false">
+          <span class="option-icon" aria-hidden="true">💐</span>
+          <strong>Flowers</strong>
+          <span>A little bouquet, just for you</span>
+        </button>
+        <button class="option" type="button" data-panel="letter-panel" aria-controls="letter-panel" aria-pressed="false">
+          <span class="option-icon" aria-hidden="true">💌</span>
+          <strong>A long letter</strong>
+          <span>All the things I want you to know</span>
+        </button>
+        <button class="option" type="button" data-panel="photos-panel" aria-controls="photos-panel" aria-pressed="false">
+          <span class="option-icon" aria-hidden="true">📸</span>
+          <strong>Our pictures</strong>
+          <span>Little snapshots of us</span>
+        </button>
+      </div>
+
+      <section class="content-panel" id="flowers-panel" aria-labelledby="flowers-title">
+        <h3 id="flowers-title">A bouquet for you 🌷</h3>
+        <div class="flower-scene" aria-label="A little bouquet">
+          <span>🌷</span><span>🌹</span><span>🌼</span><span>🌷</span>
+        </div>
+        <p class="caption">If I could, I’d bring you fresh flowers and see that lovely smile in person.</p>
+      </section>
+
+      <section class="content-panel" id="letter-panel" aria-labelledby="letter-title">
+        <h3 id="letter-title">A little letter, from me to you</h3>
+        <div class="letter">
+          <p>My love,</p>
+          <p>Happy monthsary my baby baby, I know dli kayko mag sigeg effort pero i hope this makes up for it. Every day with you gives me another reason to be grateful: for your laugh, your kindness, and the way even an ordinary moment feels special when we're sharing it.</p>
+          <p>Thank you for being you my baby and please dont doubt yourself, for choosing us, and for filling my life with so much warmth. I hope we keep making memories, supporting each other, and finding new reasons to fall for one another—month after month.</p>
+          <p>You mean more to me than I can fit into one little letter. I'm so lucky to have you, and I love you with all my heart.</p>
+          <p>Always yours,<br><strong>Your Baby 💗</strong></p>
+        </div>
+      </section>
+
+      <section class="content-panel" id="photos-panel" aria-labelledby="photos-title">
+        <h3 id="photos-title">Our little memories 📷</h3>
+        <p class="photo-note">To add your photos, put them in the <code>images</code> folder with these names: <code>first-photo.jpg</code>, <code>favorite-date.jpg</code>, and <code>favorite-candid.jpg</code>. Each photo will automatically replace its sample image.</p>
+        <div class="photo-grid">
+          <div class="photo-slot">
+            <img class="sample-image" src="images/first-date.png" alt="">
+            <img class="memory-image" data-src="images/first-date.png" alt="Our first photo together" hidden>
+            <span class="photo-label">First photo together</span>
+          </div>
+          <div class="photo-slot">
+            <img class="sample-image" src="images/fav-pic.png" alt="">
+            <img class="memory-image" data-src="images/fav-pic.png" alt="A favorite date or adventure" hidden>
+            <span class="photo-label">Favorite picture</span>
+          </div>
+          <div class="photo-slot">
+            <img class="sample-image" src="images/karaoke.png" alt="">
+            <img class="memory-image" data-src="images/karaoke.png" alt="A candid we both love" hidden>
+            <span class="photo-label">Karaoke together</span>
+          </div>
+        </div>
+      </section>
+      <button class="back-button" id="back-button" type="button" hidden>Back to the surprises</button>
+    </section>
+
+    <footer id="page-footer" hidden>Made with love, just for you ♡</footer>
+  </main>
+
+  <script>
+    const yesButton = document.querySelector("#yes-button");
+    const noButton = document.querySelector("#no-button");
+    const answerNote = document.querySelector("#answer-note");
+    const keepsakes = document.querySelector("#keepsakes");
+    const backButton = document.querySelector("#back-button");
+    const optionButtons = [...document.querySelectorAll(".option")];
+    const panels = [...document.querySelectorAll(".content-panel")];
+    const memoryImages = [...document.querySelectorAll(".memory-image")];
+    let yesScale = 1;
+
+    memoryImages.forEach((image) => {
+      image.addEventListener("load", () => {
+        image.previousElementSibling.hidden = true;
+        image.hidden = false;
+      });
+      image.addEventListener("error", () => {
+        image.hidden = true;
+      });
+      image.src = image.dataset.src;
+    });
+
+    noButton.addEventListener("click", () => {
+      yesScale = Math.min(yesScale + 0.2, 2.2);
+      yesButton.style.setProperty("--yes-scale", yesScale);
+      answerNote.textContent = "Hmm, are you sure? The yes button is getting pretty tempting…";
+    });
+
+    yesButton.addEventListener("click", () => {
+      answerNote.textContent = "I knew it! I love you too 💕";
+      keepsakes.hidden = false;
+      document.querySelector("#page-footer").hidden = false;
+      keepsakes.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    optionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedPanel = document.getElementById(button.dataset.panel);
+        panels.forEach((panel) => {
+          panel.classList.toggle("active", panel === selectedPanel);
+        });
+        optionButtons.forEach((option) => {
+          option.setAttribute("aria-pressed", String(option === button));
+        });
+        backButton.hidden = false;
+        selectedPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    });
+
+    backButton.addEventListener("click", () => {
+      panels.forEach((panel) => panel.classList.remove("active"));
+      optionButtons.forEach((option) => option.setAttribute("aria-pressed", "false"));
+      backButton.hidden = true;
+      keepsakes.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  </script>
+</body>
+</html>
